@@ -13,8 +13,8 @@ module.exports = {
   staging: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
-      user:     'username',
+      database: DATABASE_URL,
+      user:     'rlmbbwys',
       password: 'password'
     },
     pool: {
@@ -27,20 +27,16 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
+    client: "postgresql",
+    connection: DATABASE_URL,
     migrations: {
-      tableName: 'knex_migrations'
-    }
-  },
+      directory: __dirname + "/src/db/migrations",
+    },
+    seeds: {
+      directory: __dirname + "/src/db/seeds",
+    },
+  }
+  ,
 
   test: {
     client: "sqlite3",
